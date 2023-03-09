@@ -3,17 +3,20 @@ const express = require('express')
 const bodyParser =require('body-parser')
 const port = process.env.PORT || 7000  ;  
 const app = express();
-const cors = require('cors') 
+const cors = require('cors')  
 app.use(express.json({ extended: true }));
-
-require('./config/db-connection')
-const alumniRoutes = require('./routes/alumni/alumniroutes')
-const adminRoutes = require('./routes/admin/adminroutes')
-const jobRoutes = require('./routes/jobs/jobs')
  
-app.use("/v1/alumni", alumniRoutes)
-app.use("/v1/admin", adminRoutes)
-app.use("/v1/job", jobRoutes)
+
+
+// sequelize 
+const sequelize=require('./config/mysql-connection') 
+const employeeRoutes= require('./routes/employees')
+const tasksRoutes= require('./routes/tasks')
+
+
+// routes
+app.use("/v1/employee", employeeRoutes)
+app.use("/v1/tasks", tasksRoutes)
 
  
 app.listen(port, (err) => {
@@ -22,3 +25,18 @@ app.listen(port, (err) => {
 
     console.log(`server is running at ${port}`); 
 }) 
+
+
+async function testConnection(){
+try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully with mysql Database.');
+    await sequelize.sync({  });
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+
+testConnection();
+
+

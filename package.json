@@ -1,11 +1,11 @@
 {
-  "name": "alumni-backend",
+  "name": "travey",
   "version": "1.0.0",
-  "description": "Backend for alumni database",
+  "description": "Backend for travey",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon index.js"
+    "start": "nodemon index.js"
   },
   "keywords": [
     "backend",
@@ -18,8 +18,10 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "mongodb": "^4.11.0",
-    "mongoose": "^6.7.0",
-    "nodemon": "^2.0.20"
+    "generate-api-key": "^1.0.2",
+    "mysql2": "^2.3.3",
+    "node-schedule": "^2.1.0",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.25.5"
   }
 }
